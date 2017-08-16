@@ -28,11 +28,11 @@ class projectile:
             i = 1
         elif self.shotleft:
             i = -1
-        self.projx += 10*i
-        self.projy += 1
+        self.projx += 14*i
+        self.projy += -2
 
     def hasColided(self, astroid):
-        if (self.projx + 20 <= astroid.projx + 10 <= self.projx + 80 or self.projx + 20 <= astroid.projx + 35 <= self.projx + 80) and (
+        if (self.projx  <= astroid.projx <= self.projx + 35 or self.projx <= astroid.projx + 100 <= self.projx + 35) and (
                     self.projy <= astroid.projy + 15 <= self.projy + 100 or self.projy <= astroid.projy + 75 <= self.projy + 100):
             astroid.live = False
             return True

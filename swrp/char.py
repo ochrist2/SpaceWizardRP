@@ -3,7 +3,7 @@ display_width = 800
 display_height = 600
 class character():
     def __init__(self, characterImg, startx, starty):
-        self.hp = 3
+        self.hp = 4
         self.mana = 100
         self.armour = 50
         self.speed = 10

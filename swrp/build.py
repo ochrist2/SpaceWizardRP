@@ -47,15 +47,15 @@ def game_loop():
                 quitted = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
-                    charx_changed = -5
+                    charx_changed = -15
                     character.characterImg = pygame.image.load('art/wizard.png')
                     character.moveLeft()
                 if event.key == pygame.K_d:
                     character.characterImg = pygame.image.load('art/wizard_right.png')
                     character.moveRight()
-                    charx_changed = 5
+                    charx_changed = 15
                 if event.key == pygame.K_SPACE:
-                    character.chary += -40
+                    character.chary += -60
                 if event.key == pygame.K_p:
                     if character.leftways:
                      shots.append(projectile.projectile(pygame.image.load('art/fireballL.png'), character))
@@ -72,7 +72,6 @@ def game_loop():
             if 0 <= x.projx <= display_width - 50 and 0 <= x.projy <= display_height - 50:
                 x.move(x.shotleft, x.shotright)
             else:
-                x.projectileImg = pygame.image.load('art/begone.png')
                 shots.remove(x)
         if character.isAlive():
             score += 5
@@ -132,7 +131,12 @@ def game_loop():
                 show(x.projx, x.projy, x.projectileImg)
                 for i in astroids:
                     if x.hasColided(i):
-                        astroids.remove(i)
+                        show(i.projx, i.projy, pygame.image.load('art/explosion.png'))
+                        try:
+                            astroids.remove(i)
+                            shots.remove(x)
+                        except ValueError:
+                            print('whoops')
 
             for i in range(character.hp):
                 show(display_width - 300 + (50 * i), 100, pygame.image.load('art/heart.png'))
