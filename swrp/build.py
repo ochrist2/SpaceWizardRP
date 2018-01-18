@@ -12,7 +12,9 @@ blue = (0, 0, 255)
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Space Wizard Ryan Pike')
 clock = pygame.time.Clock()
-
+pygame.mixer.init()
+pygame.mixer.music.load("sandstorm.mp3")
+pygame.mixer.music.play()
 def text_objects(text, font):
     textSurface = font.render(text, True, white)
     return textSurface, textSurface.get_rect()
